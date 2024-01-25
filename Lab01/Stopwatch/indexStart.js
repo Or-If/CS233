@@ -22,9 +22,9 @@
     Initialize them to false, null and 0 respectively.
 */
 
-const isRunning = false;
-const timer = null;
-const elapsedTime = 0;
+let isRunning = false;
+let timer = null;
+let elapsedTime = 0;
 
 function init() {
 

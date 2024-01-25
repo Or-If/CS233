@@ -1,5 +1,8 @@
 #board {
   max-width: 600px;
+  background-color: black;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .card {
@@ -8,4 +11,16 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 150px;
+  margin: 2px;
+}
+
+
+#status {
+  text-align: center;
+  font-size: 25px;
+  color: white;
+}
+
+body {
+  background-color: whitesmoke;
 }

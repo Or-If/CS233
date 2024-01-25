@@ -37,12 +37,11 @@ var tries = 0;
 // --------------------------------- PART 1 --------------------------------------- //
 // when the page loads, call the function init
 
-Object.onload = init()
+window.onload = init()
 
 // this function initializes the page
 function init()
 {
-    console.log("hello world");
     // fill the array of images by calling fillImages
     fillImages();
     // shuffle them by calling shuffle images
@@ -114,11 +113,9 @@ function enableAllCards() {
     // create a for loop that iterates through cards
     for (let i=0; i<cards.length; i++) {
         // set the onclick property for the current element in cards to handleClick
-        cards[i].addEventListener("click", handleClick);
+        cards[i].click = handleClick;
         // set the style.cursor to 'pointer' too
-        cards[i].addEventListener("mouseover", function() {
-            cards[i].style.cursor = "pointer";
-        });
+        cards[i].style.cursor = 'pointer';
     }
         
     // end for loop
@@ -174,31 +171,25 @@ function showAllBacks() {
 // this is the function that fires when the user clicks on a card
 function handleClick() {
     // declare the variable index and assign it to the current card's id attribute
-    console.log(this.id)
+    // console.log(this.id)
     let index = this.id;
     // declare cardImage and assign it to the image for this card
     let cardImage = images[index];
-    //console.log(cardImage);
     // set the backgroundImage to the url of the cardImage
     document.getElementById(index).style.backgroundImage = "url('" + imagePath + images[index] + "')"
     // disable the card 
     disableCard(index);
-    //                  document.getElementById(index).setAttribute("disabled", "");
-    //                  I am having troubles actually getting this to disable
-
 
     // if this is the first card picked
-    
     if (firstPick===-1) {
         // assign firstPick to index
         firstPick = index;
-        console.log("first pick =" + index)
         // else
     } else {
         // assign secondPick to index
         secondPick = index;
         // disable all of the cards
-        // disableAllCards();
+        disableAllCards();
         // set a timer for 2 seconds.  Call checkCards when it fires.
         setTimeout(checkCards, 2000)
         // end if
@@ -207,7 +198,6 @@ function handleClick() {
 
 // disable one card based on it's index
 function disableCard(index) {
-    //   I am slightly confused as why this is here, this doesnt actually disable the card and you can still click on it.
     var card = document.getElementById(index);
     card.onclick = () => {}; 
     card.style.cursor = 'none';
@@ -215,7 +205,6 @@ function disableCard(index) {
 
 // disable all of the cards
 function disableAllCards() {
-    //   Same confusion with disableCard
     for (let i=0; i<20; i++) {
         let card = document.getElementById(i);
         card.onclick = () => {}; 
@@ -230,8 +219,8 @@ function checkCards() {
 
     // increment the number of tries
     tries++;
-    let firstCardIndex = imageIndexSplit(firstPick)
-    let secondCardIndex = imageIndexSplit(secondPick)
+    let firstCardIndex = images[firstPick][4]
+    let secondCardIndex = images[secondPick][4]
     if (firstCardIndex===secondCardIndex) {
         matches++
         removeCard();
@@ -244,13 +233,6 @@ function checkCards() {
     secondPick = -1;
     document.getElementById("status").innerHTML = "Matches: " + matches + " Tries: " + tries
 
-}
-
-function imageIndexSplit (index) {
-    console.log(index);
-    let splitIndex = images[index].split("")
-    console.log(splitIndex[4])
-    return splitIndex[4]
 }
 
 
