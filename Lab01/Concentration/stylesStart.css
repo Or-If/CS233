@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #board {
   max-width: 600px;
   background-color: black;
@@ -24,3 +25,16 @@
 body {
   background-color: whitesmoke;
 }
+=======
+#board {
+  max-width: 600px;
+}
+
+.card {
+  border-width: 2px;
+  border-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 150px;
+}
+>>>>>>> c1a85b097ff17fd224efe91b5a7ff223bbb9b738
